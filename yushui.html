@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no">-->
+    <meta name="screen-orientation" content="">
+    <title>HTML5微信游戏</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/yushui.css">
+    <style>
+
+    </style>
+</head>
+<body style="background: lightpink">
+
+
+<div  id="main" class="main">
+    <div class="container" id="container">
+
+    </div>
+
+    <!--头部显示的标题-->
+    <header class="common_header" style="position: absolute;top: 0;left: 0;" >
+        雨水
+    </header>
+    <!--放置展示节气信息的图片-->
+    <nav class="common_nav" style="position: absolute;top: 7%;left: 0;"  >
+
+    </nav>
+    <section class="common_content" >
+
+        <!--<div class="ft"><img src="img/g1.png" ></div>-->
+    </section>
+    <div class="mask" id="mask">
+        <span id="start"><img src="images/yushui/a1.png"></span>
+    </div>
+
+    <div class="hitTop" id="hitTop">
+        <div class="showInfo">
+            <h1>恭喜你！</h1>
+            <h1>闯关成功！</h1>
+        </div>
+    </div>
+</div>
+
+<script src="js/Block.js"></script>
+<script>
+    var oContainer = document.getElementById('container');
+    var block = new Block(oContainer);
+    block.init();
+
+    var mask = document.getElementById('mask');
+    var start = document.getElementById('start');
+//    start.onclick = function(){
+        block.start();
+        mask.style.display = 'none';
+//    }
+</script>
+
+</body>
+</html>

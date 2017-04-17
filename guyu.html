@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>谷雨</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <style>
+       .showLeftCount{
+           font-size:20px; width:24%;height:5%;position:absolute; top:23%; left: 15%;text-align:right;
+       }
+      .showRightCount{
+          font-size:20px; width:40%;height:5%;position:absolute; top:23%; left: 44.5%;text-align:right;
+      }
+    </style>
+</head>
+<body>
+    <!--头部显示的标题-->
+    <header class="common_header">
+        谷雨
+    </header>
+    <!--放置展示节气信息的图片-->
+    <nav class="common_nav">
+
+    </nav>
+    <section class="common_content" id="box">
+        <canvas id="canvas" style="display: block;"></canvas>
+        <div id="f" class="showLeftCount"></div>
+        <div id="m" class="showRightCount">计数：</div>
+    </section>
+    <div class="hitTop" id="hitTop">
+        <div class="showInfo">
+            <h1>恭喜你！</h1>
+            <h1>闯关成功！</h1>
+        </div>
+    </div>
+</body>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script src="js/guyu.js"></script>
+<script type="text/javascript">
+    $(function(){
+        var box = $('#box');
+    });
+</script>
+</html>

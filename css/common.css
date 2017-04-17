@@ -1,0 +1,56 @@
+html,body{
+    height: 100%;
+    width: 100%;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+/*头部 start*/
+.common_header{
+    height: 5%;
+    padding: 2% 0;
+    width: 100%;
+    background: #000;
+    color: #fff;
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+}
+/*头部 end*/
+/*显示的图片 start*/
+.common_nav{
+    width: 100%;
+    height: 13%;
+    background: lightblue;
+}
+/*显示的图片 end*/
+/*游戏  start*/
+.common_content{
+    width: 100%;
+    height: 78%;
+    background: pink;
+    overflow: hidden;
+}
+
+/*游戏  end*/
+.hitTop{
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,.6);
+    position: absolute;
+    left: 0;
+    top: 0;
+    display: none;
+}
+.showInfo{
+    width: 75%;
+    height: 50%;
+    background: lightblue;
+    margin: 35% auto;
+    z-index:200;
+    opacity: 1;
+}
+.showInfo h1{
+    margin: 10px;
+}
