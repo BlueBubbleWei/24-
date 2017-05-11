@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>芒种</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <style>
+        .first{
+            background-image: url(images/mangzhong/mangzhong.png);
+            background-repeat: no-repeat;
+            background-size:100% 100%;
+            z-index: 2;
+        }
+        #changWeather{
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            background-image: url(images/mangzhong/sky1.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            position: relative;
+        }
+        .maizi{
+            width: 60px;
+            height: 80px;
+            background-image: url(images/mangzhong/maizi.png);
+            background-repeat: no-repeat;
+            background-size: 100%;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <!--翻页-->
+    <div class="fanye" id="fanye">
+
+    </div>
+    <!--音乐-->
+    <span id="musicControl">
+            <a id="mc_play" class="stop" onclick="play_music();">
+                <audio id="musicfx" src="music/tap.mp3" loop="loop" autoplay="autoplay">
+                </audio>
+            </a>
+          </span>
+    <!--展示界面-->
+    <div class="page first">
+        <div class="xiaoniao bird1"></div>
+        <div class="xiaoniao bird2"></div>
+    </div>
+    <!--游戏界面-->
+    <div class="page">
+        <nav class="common_nav">
+            <h1>收麦子，防梅雨，种大豆</h1>
+        </nav>
+        <section class="common_content" id="container1">
+            <div id="changWeather">
+
+            </div>
+        </section>
+    </div>
+
+    <!--游戏结束页面-->
+    <div class="hitTop" id="hitTop">
+        <div class="showInfo show">
+            <h3>好腻害哦！一共捉了: <span id="number"></span>只虫子！</h3>
+            <button class="endMsg" id="again">再来一次</button>
+        </div>
+    </div>
+
+</body>
+<script src="js/jquery.js"></script>
+<script src="js/music.js"></script>
+<script src="js/mangzhong.js"></script>
+</html>

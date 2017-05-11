@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="stylesheet" href="css/xiaoman.css">
+    <link rel="stylesheet" href="css/common.css">
+    <title>小满</title>
+    <style>
+        .first{
+            background-image: url(images/xiaoman/xiaoman.png);
+            background-repeat: no-repeat;
+            background-size:100% 100%;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <!--翻页-->
+    <div class="fanye" id="fanye">
+
+    </div>
+    <!--音乐-->
+    <span id="musicControl">
+        <a id="mc_play" class="stop" onclick="play_music();">
+            <audio id="musicfx" src="music/tap.mp3" loop="loop" autoplay="autoplay">
+            </audio>
+        </a>
+      </span>
+    <!--展示界面-->
+    <div class="page first">
+        <div class="xiaoniao bird1"></div>
+        <div class="xiaoniao bird2"></div>
+    </div>
+    <!--游戏界面-->
+    <div class="page">
+        <nav class="common_nav">
+            <h1>小满到，杀害虫，护庄家</h1>
+        </nav>
+
+        <div class="common_content">
+            <!--游戏-->
+            <canvas id="game-pane"></canvas>
+            <!--记分区域-->
+            <div class="game-score">
+                <button class="start-btn">开始游戏</button>
+                <p class="obtain_score"><span>获得分数：</span><em class="score">0</em></p>
+            </div>
+        </div>
+    </div>
+    <!--游戏结束页面-->
+    <div class="hitTop" id="hitTop">
+        <div class="showInfo show">
+            <h3>好腻害哦！一共捉了: <span id=""></span>只虫子！</h3>
+            <button class="endMsg" id="again">再来一次</button>
+
+        </div>
+    </div>
+<script src="js/jquery.js"></script>
+<script src="js/music.js"></script>
+<script src="js/xiaoman.js"></script>
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

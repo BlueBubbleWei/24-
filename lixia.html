@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>立夏</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <style>
+        .common_content{
+            position: relative;
+        }
+        .eggs{
+            width: 40%;
+            height: 30%;
+            position: absolute;
+            background-image: url('images/lixia/egg.png');
+            background-position: 100%;
+            background-repeat: no-repeat;
+            left: 30%;
+        }
+        .topEgg{
+            top: 0%;
+        }
+        .BottomEgg{
+            bottom: 0;
+        }
+        #start{
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            font-weight: bold;
+            font-size: 18px;
+            top: 50%;
+            text-align: center;
+        }
+        #word{
+            position: absolute;
+            width: 100%;
+            height: 50px;
+            font-weight: bold;
+            font-size: 28px;
+            top: 10%;
+            text-align: center;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <!--头部显示的标题-->
+    <header class="common_header">
+        立夏 斗蛋
+    </header>
+    <!--放置展示节气信息的图片-->
+    <nav class="common_nav">
+    </nav>
+    <section class="common_content" id="container">
+        <div class="eggs topEgg" id="top"></div>
+        <div class="eggs BottomEgg" id="bottom"></div>
+        <p id="word"></p>
+        <div id="start">碰撞</div>
+    </section>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    var container=document.getElementById("container");
+    var subDiv=document.getElementById('bottom');
+    var Width=container.clientWidth;
+    var Height=container.clientHeight;
+    var subHeight=subDiv.clientHeight;
+    var Top=Height/2-subHeight;
+    var speed=Math.floor(Math.random()*1000)+3000;
+    var score,TopScore,BottomScore;
+    console.log(Width+"====="+Height+"====="+Top)
+    //    点击撞蛋时监听两边元素的left，同时，让当前元素隐藏
+</script>
+<script>
+    //当DOM加载完成后
+    $(function(){
+        $("#start").click(function () {
+            $(this).css('display','none');
+            move($('#top'),speed);
+            up($('#bottom'),speed);
+        })
+    });
+    function move(obj,speed) {
+        TopScore=Rand();
+        $(obj).animate({
+            top:Top
+        },speed-=1500,function () {
+            if(TopScore>BottomScore){
+                $('#top').css('background-image'," url('images/lixia/success.png')");
+                $('#bottom').css('background-image'," url('images/lixia/broken.png')");
+                $("#word").html("赢了");
+                $("#word").css('display','block');
+
+            }
+        });
+    }
+    function up(obj,speed) {
+        BottomScore=Rand();
+        $(obj).animate({
+            bottom:Top
+        },speed-=1500,function () {
+            if(TopScore<BottomScore){
+                $('#bottom').css('background-image'," url('images/lixia/success.png')");
+                $('#top').css('background-image'," url('images/lixia/broken.png')");
+                $("#word").html("输了");
+                $("#word").css('display','block');
+
+            }
+        });
+    }
+    function Rand() {
+        score=Math.ceil(Math.random()*50+50);
+        return score;
+    }
+</script>
+
+
+</html>

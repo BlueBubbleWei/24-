@@ -28,7 +28,7 @@ html,body{
 /*游戏  start*/
 .common_content{
     width: 100%;
-    height: 78%;
+    height: 86.8%;
     background: pink;
     overflow: hidden;
 }
@@ -42,15 +42,143 @@ html,body{
     left: 0;
     top: 0;
     display: none;
+    z-index:1000;
 }
 .showInfo{
     width: 75%;
     height: 50%;
-    background: lightblue;
     margin: 35% auto;
-    z-index:200;
     opacity: 1;
 }
 .showInfo h1{
     margin: 10px;
 }
+.page{
+    position: absolute;
+    top:0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+/*翻页*/
+.fanye{
+    width: 30px;
+    height: 20px;
+    position: absolute;
+    bottom: 20px;
+    margin-left: 43%;
+    background-image: url(../images/chunfen/jiantou.png);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+    animation: move  2s infinite;
+    z-index: 500;
+}
+
+@keyframes move{
+    0%   {bottom:20px;}
+    33%  {bottom:25px;}
+    66%  {bottom:20px;}
+    100%  {bottom:15px;}
+}
+/*翻页*/
+/* music */
+@-webkit-keyframes reverseRotataZ{
+    0%{-webkit-transform: rotateZ(0deg);}
+    100%{-webkit-transform: rotateZ(-360deg);}
+}
+@-webkit-keyframes rotataZ{
+    0%{-webkit-transform: rotateZ(0deg);}
+    100%{-webkit-transform: rotateZ(360deg);}
+}
+#musicControl { position:fixed;right:10px;top:20px;margin-top:0;display:inline-block;z-index:99999999}
+#musicControl a { display:inline-block;width:25px;height:25px;overflow:hidden;background:url('../images/chunfen/mcbg.png') no-repeat;background-size:100%;}
+#musicControl a audio{width:100%;height:56px;}
+#musicControl a.stop { background-position:left bottom;}
+#musicControl a.on { background-position:0px 1px;-webkit-animation: reverseRotataZ 1.2s linear infinite;}
+/* music */
+/*小鸟*/
+.xiaoniao{
+    width: 40px;
+    height: 30px;
+    position: absolute;
+    bottom:40%;
+    right:-60px;
+    background-image: url(../images/chunfen/xiaoniao.png);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+.bird1{
+    animation: xiaoniao1  5s infinite;
+}
+.bird2{
+    animation: xiaoniao2  5s infinite;
+}
+@-webkit-keyframes xiaoniao1 {
+    0%{bottom: 32%;right:0}
+    25%{bottom: 40%;right:25%}
+    37.5%{bottom: 44%;right:37.5%}
+    50%{bottom:47%;right:50%}
+    62.5%{bottom: 54.5%;right:62.5%}
+    75%{bottom:63%;right:75%}
+    87.5%{bottom:40%;right:87.5%}
+    100%{bottom: 35%;right:100%}
+}
+@-webkit-keyframes xiaoniao2 {
+    0%{bottom: 41%;right:0}
+    25%{bottom: 45%;right:28%}
+    50%{bottom:52%;right:57%}
+    75%{bottom:50%;right:75%}
+    100%{bottom: 40%;right:100%}
+}
+/*小鸟*/
+/*飞机*/
+.feiji{
+    width: 60px;
+    height: 80px;
+    position: absolute;
+    bottom: 0;
+    left:-60px;
+    animation: feiji  3s infinite;
+    background-image: url(../images/chunfen/feiji.png);
+    background-repeat: no-repeat;
+    background-size:100% 100%;
+}
+@-webkit-keyframes feiji {
+
+    100%{bottom: 120px;left:100%}
+}
+/*飞机*/
+.show>h3{
+    color: #000;
+    width: 100%;
+    font-size: 32px;
+    font-weight: bold;
+    text-align: center;
+    padding: 95px 0 0 0;
+    margin: 0 0 30px 0;
+    z-index: 400;
+}
+/*标题*/
+nav>h1{
+    margin: 0px;
+    padding: 0px;
+    text-align: center;
+    padding-top: 7%;
+}
+/*标题*/
+/*再来一次*/
+.endMsg{
+    outline: none;
+    border: 2px solid #000;
+    height: 43px;
+    padding: 0 13px;
+    font-size: 20px;
+    margin-left: 29%;
+    background: lightcoral;
+    border-radius: 14px;
+    margin-right: 15px;
+    font-weight: bold;
+}
+/*再来一次*/

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>立冬</title>
+    <link rel="stylesheet" href="css/common.css"/>
+</head>
+<style>
+    #container{
+        background-image: url("images/lidong/yongchi.png");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .yongdao{
+        width: 100%;
+        height: 20%;
+        margin-top:10%;
+        border: 2px #000000 solid;
+        border-left: none;
+        border-right: none;
+        position: relative;
+    }
+    .target1{
+        background: lightseagreen;
+    }
+    .target2{
+        background: lightgreen;
+    }
+    .target3{
+        background: lightblue;
+    }
+    .wait{
+        float: left;
+        width: 20%;
+        height: 100%;
+       background: gray;
+    }
+    .swim{
+        float: left;
+        width: 80%;
+        height: 100%;
+        z-index: 10;
+    }
+    .swimmer{
+        width: 30px;
+        height: 30px;
+        position: absolute;
+        top: 38%;
+        left: -13%;
+        /*background: lightcoral;*/
+        background-image: url("images/lidong/swim.gif");
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .lidong{
+        display: block;
+    }
+    .explain{
+        width: 100%;
+        height: 20%;
+        position: absolute;
+        top: 30%;
+        margin: 0 auto;
+        /*background: lightsteelblue;*/
+    }
+    .explain>p{
+        text-align: center;
+        color: #E42313;
+    }
+    .flex_box{
+        display: -webkit-flex;
+        display: flex;
+        flex-direction:row;
+        justify-content:space-around;
+    }
+    .choice{
+        width: 10%;
+        height: 27%;
+        background: yellowgreen;
+        margin-rights: 5px;
+        float: left;
+        text-align: center;
+        color: #34002A;
+
+    }
+</style>
+<body>
+<!--头部显示的标题-->
+<header class="common_header">
+   立冬  冬泳
+</header>
+<!--放置展示节气信息的图片-->
+<nav class="common_nav">
+</nav>
+<section class="common_content" id="container">
+    <div class="wait">
+
+    </div>
+   <div class="swim">
+       <div class="yongdao target1">
+           <div class="swimmer"  index="1"></div>
+       </div>
+       <div class="yongdao target2">
+           <div  class="swimmer"  index="2"></div>
+       </div>
+       <div class="yongdao target3">
+           <div  class="swimmer"  index="3"></div>
+       </div>
+   </div>
+</section>
+<div class="hitTop lidong">
+    <div class="explain">
+        <p id="choice">请选择泳道</p>
+        <div class="flex_box">
+            <p class="choice">1</p>
+            <p class="choice">2</p>
+            <p class="choice">3</p>
+        </div>
+
+    </div>
+</div>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    var choice=0;
+    var flag=false;
+    var turnOn=false;
+    $(document).ready(function () {
+        $('.choice').click(function () {//点击事件
+            if(turnOn==false){
+                choice=parseInt($(this).html());
+                console.log(choice);
+                $(".hitTop").css("display","none");
+                init();
+            }
+            turnOn=true;
+        });
+
+        function init() {
+            for(var i=0;i<$(".swimmer").length;i++){
+                Animaite($(".swimmer").eq(i));
+            }
+        }
+        function Animaite(obj) {
+            var Width=$(".yongdao ").width()- $(obj).width();
+            //运动
+            $(obj).animate({
+                left:Width,
+            },RandSpeed(),function () {
+                if(flag==false){//flag用来只执行一次
+                    flag=true;
+                    $(".hitTop").css("display","block");
+                    if($(this).attr("index")==choice){
+                        $("#choice").html("你赢了");
+                    }else{
+                        $("#choice").html("你输了");
+                    }
+                }
+
+            });
+        }
+        function RandSpeed() {
+            var speed=Math.round(Math.random()*1000+500);
+            console.log(speed)
+            return speed;
+        }
+    });
+</script>
+</html>

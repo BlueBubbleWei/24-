@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>小暑</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <style>
+        #container{
+            position: relative;
+            background-image: url("images/xiaoshu/tree.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        .area{
+            position: relative;
+            width: 68%;
+            height: 60%;
+            top: 10%;
+            left: 20%;
+            /*border: 1px solid #000;*/
+            border-radius: 150px;
+            padding-left: 0;
+            padding-top: 5%;
+        }
+        .meizi{
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-image: url("images/xiaoshu/meizi.png");
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+        }
+        .bg{
+
+        }
+    </style>
+</head>
+<body>
+<!--头部显示的标题-->
+<header class="common_header">
+    小暑
+</header>
+<!--放置展示节气信息的图片-->
+<nav class="common_nav">
+梅子金黄杏子肥
+    风吹草动摘梅子！
+</nav>
+<section class="common_content" id="container">
+    <div class="area" id="area">
+
+    </div>
+</section>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+    var count=0;
+    var num=Math.round(Math.random()*5)+10;
+    $(document).ready(function () {
+        createMeizi();
+        init();
+        setInterval(function () {//不断刷新
+            init();
+        },1000);
+        $('.meizi').click(function () {
+            if($(this).attr("flag")==0){
+                alert("点到虫子了")
+                return;
+            }
+            var index=$(this).attr("index");
+            $(".meizi")[index].remove();//移除
+            for(var i=index;i< $(".meizi").length;i++){
+                $('.meizi').eq(i).attr("index",parseInt( $('.meizi').eq(i).attr("index"))-1);
+            }
+            num--;
+            if(num==0){
+                alert("游戏结束！")
+            }
+            count++;
+        })
+
+       function init() {
+           $('.meizi').attr("flag", 1);
+           $('.meizi').css("background-image", "url('images/xiaoshu/meizi.png')")
+           for(var i=0;i<$('.meizi').length;i++){
+               var temp=Math.round(Math.random()*10);
+                   if (temp == 1 || temp == 7 ) {
+                       $('.meizi').eq(i).attr("flag", 0);
+                       $('.meizi').eq(i).css("background-image", "url('images/xiaoshu/worm.png')");
+                   }
+               $('.meizi').eq(i).css({"left":randLeft()+"px","top":rangTop()+"px"});
+           }
+       }
+
+        //随机生成小块的left
+        function randLeft(){
+            var Width=$('#area').width();
+            console.log(Width)
+            var GenerateWidth=Math.round(Math.random()*Width)+10;//偏离左边10px
+            if(GenerateWidth>=Width){
+                GenerateWidth=Width-10;
+            }
+            return GenerateWidth;
+        }
+        //随机生成小块的top
+        function rangTop() {
+            var Height=$('#area').height();
+            var GenerateHeight=Math.round(Math.random()*Height)+10;//偏离左边10px
+            if(GenerateHeight>=Height){
+                GenerateHeight=Height-10;
+            }
+            return GenerateHeight;
+        }
+        //创建小方块
+        function createMeizi() {
+            var str='';
+
+            for(var i=0;i<num;i++){
+                str+="<div class='meizi bg' index="+i+" flag='1'></div>";
+            }
+            $("#area").append(str);
+        }
+    });
+</script>
+</html>

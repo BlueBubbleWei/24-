@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>清明</title>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <style>
+        .common_content{
+            position: relative;
+        }
+        .tomb{
+            position: absolute;
+            bottom: 0;
+            height: 10%;
+        }
+        .ancestor{
+            position: absolute;
+            right: 0;
+            width: 10%;
+            /*z-index: 200;*/
+        }
+        .success{
+            color: red;
+            position: absolute;
+            top: 50%;
+            width: 100%;
+            text-align: center;
+            display: none;
+        }
+
+    </style>
+</head>
+<body>
+
+    <header class="common_header" >
+       清明
+    </header>
+    <!--放置展示节气信息的图片-->
+    <nav class="common_nav">
+
+    </nav>
+    <section class="common_content" id="container">
+        <!--底部div-->
+        <div class="tomb" id="bom1">
+        </div>
+        <div class="tomb" id="bom2">
+        </div>
+        <div class="tomb" id="bom3">
+        </div>
+        <!--右侧漂浮div-->
+        <div class="ancestor" id="ancest1">
+        </div>
+        <div class="ancestor" id="ancest2">
+        </div>
+        <div class="ancestor" id="ancest3">
+        </div>
+        <p class="success"></p>
+    </section>
+    <div class="hitTop" id="hitTop">
+        <div class="showInfo">
+            <h1>恭喜你！</h1>
+            <h1>闯关成功！</h1>
+            <p id="score"></p>
+        </div>
+    </div>
+</body>
+<script src="js/qingming.js"></script>
+<script src="js/jquery.js"></script>
+<script>
+    init();
+    var speed=Math.floor(Math.random()*2000)+5000;
+    for(var i=0,len=$('.ancestor').length;i<len;i++){
+        var leftSpeed=speed;
+        move($('.ancestor')[i],leftSpeed);
+    }
+    var co1_1_1=rgba2rgb(co1_1);
+    var col_2_2=rgba2rgb(col_2);
+    var col_3_3=rgba2rgb(col_3);
+    $('.ancestor').click(function () {
+        var downSpeed=speed;
+        $(this).stop(true,false).animate();//第一个true是否开始新的动画，第二个false是否从第一个动画后结束开始
+        var Left=parseInt($(this).position().left);
+        var color=rgba2rgb($(this).css("background-color"));
+        if(Left>wdis*0.35 && Left<= (2*wdis) && (color==co1_1_1) ){//第一个
+            down($(this),downSpeed);
+            $(".success").css('display', "block") ;
+            $(".success").html("成功归位！") ;
+            setTimeout(function () {
+                $(".success").css('display', "none") ;
+            }, 500) ;
+        }else if(Left>(3*wdis*0.35) && Left< (4*wdis) && (color==col_2_2) ){//第二个
+            down($(this),downSpeed);
+            $(".success").css('display', "block") ;
+            $(".success").html("成功归位！") ;
+            setTimeout(function () {
+                $(".success").css('display', "none") ;
+            }, 500) ;
+        }else if(Left>(5*wdis*0.35) && Left< (6*wdis) && (color==col_3_3) ){//第二个
+            down($(this),downSpeed);
+            $(".success").css('display', "block") ;
+            $(".success").html("成功归位！") ;
+            setTimeout(function () {
+                $(".success").css('display', "none") ;
+            }, 500) ;
+        }
+    });
+    //动画效果
+    function move(obj,speed) {
+       $(obj).animate({
+           left:0
+        },speed-=300,function () {
+         $(obj).css("display","none");
+
+       });
+    }
+    function down(obj,speed) {
+        $(obj).animate({
+            bottom:0,
+        },speed-=500,function () {
+            $(obj).css("display","none");
+            count++;
+            console.log(count)
+            setTimeout(function () {
+                $('#hitTop').css("display","block");
+                $('#score').innerHTML="总分是:"+count;
+            },3000);
+        });
+    }
+    function rgba2rgb(backcolor) {
+        var backList=backcolor.split('(');
+        backList= backList[1].split(')');
+        backList=backList[0].split(',');
+        backList.pop();
+        for(var i=0;i<backList.length;i++){
+            backList[i]=backList[i].replace(/\s/g,"");//去空格
+        }
+        backList=backList.toString();
+        return backList;
+    }
+
+</script>
+</html>

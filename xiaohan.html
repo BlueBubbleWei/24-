@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <title>小寒</title>
+    <link rel="stylesheet" href="css/common.css"/>
+    <style>
+        .filed{
+            width: 100%;
+            height: 100%;
+            background-image: url(images/xiaohan/tudi.png);
+            background-repeat: repeat-x;
+            background-size:cover;
+        }
+        .shucai{
+            width: 100%;
+            height: 30%;
+            margin-bottom: 5%;
+            border:1px solid #000;
+            position: relative;
+        }
+        .dabaicai {
+            width: 50px;
+            height: 50px;
+            position: absolute;
+            top: 36%;
+            background-image: url(images/xiaohan/dabaicai.png);
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        #container{
+            position: relative;
+        }
+        .tip{
+            position: absolute;
+            top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!--头部显示的标题-->
+    <header class="common_header">
+        小寒
+    </header>
+    <!--放置展示节气信息的图片-->
+    <nav class="common_nav">
+        白露时节种的白菜要收来过冬啦！
+    </nav>
+    <section class="common_content" id="container">
+        <p class="tip">至少有<span id="amount"></span>棵白菜成熟了 哦！&nbsp;&nbsp;你现在已经摘了<span id="ans"></span>棵白菜！</p>
+        <div class="filed">
+            <div class="shucai">
+
+            </div>
+            <div class="shucai">
+
+            </div>
+            <div class="shucai">
+
+            </div>
+        </div>
+    </section>
+</body>
+<script src="js/jquery.js"></script>
+<script>
+
+    $(document).ready(function () {
+        var Width=Math.round(Math.random()*$(".shucai").width());
+        var amount=60;
+        var ans=0;
+        $('#amount').html(amount);
+        $('#ans').html(ans);
+        init();
+
+        //初始化
+       function init() {
+           timer=setInterval(function () {
+               if(amount<=0){
+                   clearInterval(timer);
+                   if(ans>amount){
+                       alert("您共摘了"+ans+"棵白菜,好棒！")
+                   }else{
+                       alert("您共摘了"+ans+"棵白菜,储存的白菜过不了冬哦！")
+                   }
+
+                   return;
+               }
+               var count=Math.round(Math.random()*2);
+               $(".shucai").eq(count).append(createBlock());
+               amount--;
+               $(".dabaicai").css("left",Width+"px");
+               for(var x=0;x<$(".shucai").length;x++){
+                   for(var y=0;y<$(".shucai").eq(x).children().length;y++){
+                       Animate($(".shucai").eq(x).children().eq(y));
+                   }
+               }
+           },1000);
+       }
+
+       //动起来
+       function Animate(obj) {
+           //摘白菜
+           obj.click(function () {
+               $(this).attr("flag",false);
+               $(this).stop();
+               $(this).remove();
+//               console.log($(this).attr("flag"))
+               if($(this).attr("flag")!=true){
+                   ans++;
+//                   console.log(ans+"ans")
+                   $('#ans').html(ans);
+                   $(this).attr("flag",true);
+               }
+           })
+
+           obj.animate({
+               left:0+"px",
+           },3000,function () {
+               $(this).remove();
+           });
+       }
+
+       //产生小方块
+       function createBlock() {
+           var str="";
+               str+="<div class='dabaicai'></div>";
+           return str;
+       }
+    });
+</script>
+</html>
