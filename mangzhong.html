@@ -46,17 +46,21 @@
           </span>
     <!--展示界面-->
     <div class="page first">
+        <!--小鸟-->
         <div class="xiaoniao bird1"></div>
         <div class="xiaoniao bird2"></div>
+        <!--小鸟-->
+        <!--蝴蝶-->
+        <div class="butterfly"></div>
+        <!--蝴蝶-->
     </div>
     <!--游戏界面-->
     <div class="page">
         <nav class="common_nav">
-            <h1>收麦子，防梅雨，种大豆</h1>
+            <h1>风吹浪涌，要收麦子啦！</h1>
         </nav>
         <section class="common_content" id="container1">
             <div id="changWeather">
-
             </div>
         </section>
     </div>
@@ -64,13 +68,40 @@
     <!--游戏结束页面-->
     <div class="hitTop" id="hitTop">
         <div class="showInfo show">
-            <h3>好腻害哦！一共捉了: <span id="number"></span>只虫子！</h3>
+            <h3> <span id="number"></span></h3>
             <button class="endMsg" id="again">再来一次</button>
         </div>
     </div>
 
 </body>
 <script src="js/jquery.js"></script>
-<script src="js/music.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
 <script src="js/mangzhong.js"></script>
+<script>
+    $(function(){
+        wechatReady(url, function(){
+            wx.checkJsApi({
+                jsApiList: ['onMenuShareTimeline'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+                success: function(res) {
+
+                    // 如果可以支持指定能够js接口，则执行
+                    ////////////////////////省略了判断
+
+                    wx.onMenuShareTimeline({
+                        title: '小满', // 分享标题
+                        link:resUrl+'/mangzhong.html', // 分享链接
+                        imgUrl: resUrl+'/images/mangzhong/mangzhong.png', // 分享图标
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                        }
+                    });
+                }
+            }) ;
+        });
+    }) ;
+</script>
 </html>

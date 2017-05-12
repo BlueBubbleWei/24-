@@ -2,19 +2,18 @@
  * Created by weiyumei on 2017/5/11.
  */
 var timer;
-
 var current=0;
 var score=0;
 var audio=document.getElementById('musicfx');
 var shareUrl="http://120.24.180.249/game/WechatTokenValidate.jsp";
 window.onload=function () {
     if(document.readyState=="complete"){//判断文档是否加载完成
-        just_play();//播放音乐;
-        if(is_weixn()){
+        // 音乐
+        if (!is_weixn()){//判断是否在微信环境下
+            just_play();
+        }else{
             if(musicSwitch){
                 just_play();//播放音乐
-                //旋转鸡蛋
-                rotateEgg();
                 share();//微信分享
             }
         }
@@ -55,6 +54,13 @@ window.onload=function () {
         };
     }
 };
+//翻页
+$("#fanye").click(function () {
+    $(this).fadeOut(1000);
+    $(".first").fadeOut(1000);
+    //旋转鸡蛋
+    rotateEgg();
+});
 function rotateEgg() {
 //     更新音乐
     if(musicSwitch){//音乐开着

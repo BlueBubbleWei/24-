@@ -1,11 +1,8 @@
 /**
  * Created by weiyumei on 2017/5/10.
  */
-//翻页
-$("#fanye").click(function () {
-    $(this).fadeOut(1000);
-    $(".first").fadeOut(1000);
-});
+var url='http://139.226.189.187/game/URLSignServlet.jsp';
+var resUrl='http://139.226.189.187/game';
 //点击是否播放音乐
 var musicSwitch=true;
 function play_music(){
@@ -14,11 +11,6 @@ function play_music(){
         $('#mc_play').attr('class','stop');
         audio.pause();
         musicSwitch=false;
-        console.log('musicSwitch'+musicSwitch)
-          /*audio.currentTime = 0;
-        //切换音乐
-        audio.src = "music/tap.mp3";
-        audio.play();//播放停止音乐*/
     }else{
         $('#mc_play audio').get(0).play();
         $('#mc_play').attr('class','on');
@@ -40,6 +32,24 @@ function is_weixn(){
         return true;
     } else {
         return false;
+    }
+}
+// 开始时更新音乐
+function startmusic() {
+    if(musicSwitch){
+        audio.currentTime = 0;
+        audio.src = "music/tap.mp3";
+        audio.play();
+    }
+}
+function endMusic() {
+    // 结束时更新音乐
+    if(musicSwitch){
+        audio.pause();
+        audio.currentTime = 0;
+        //切换音乐
+        audio.src = "music/err.mp3";
+        audio.play();//播放停止音乐
     }
 }
 //    微信分享

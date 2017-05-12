@@ -277,24 +277,17 @@ function paint(index) {
     }
 }
 function paintPip(bottom_position) {
-    context.borderStyle = "#000000" ;
-    context.fillStyle = "#D3A943" ;
-    context.fillRect(bottom_position, 0, pip_width, border_y) ;
-    context.stroke() ;
+    var img = new Image() ;
+    img.src = "./images/xiaoman/pip.png" ;
+    context.drawImage(img, bottom_position, 0, pip_width, border_y) ;
 }
 function paintBug(bug) {
     // 使用图片，偶尔会出现不显示图片的情况
-    // var img = new Image() ;
-    // img.src = "./img/circle_black.png" ;
-    // context.drawImage(img, bug.x, bug.y, 10, 10) ;
+    var img = new Image() ;
+    img.src = "./images/xiaoman/bug.png" ;
+    context.drawImage(img, bug.x - bug_radius, bug.y - bug_radius, bug_radius * 2, bug_radius * 2) ;
 
-    context.fillStyle = "#000000" ;
-    context.beginPath() ;
-    context.arc(bug.x, bug.y, bug_radius, 0, 2 * Math.PI) ;
-    context.fill() ;
-    context.closePath() ;
 }
-
 
 
 

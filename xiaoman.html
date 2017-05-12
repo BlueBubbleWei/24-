@@ -57,9 +57,36 @@
         </div>
     </div>
 <script src="js/jquery.js"></script>
-<script src="js/music.js"></script>
+<script src="js/common.js"></script>
+<script type="text/javascript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="js/wechat_ready.js"></script>
 <script src="js/xiaoman.js"></script>
+<script>
+    $(function(){
+        wechatReady(url, function(){
+            wx.checkJsApi({
+                jsApiList: ['onMenuShareTimeline'], // 需要检测的JS接口列表，所有JS接口列表见附录2,
+                success: function(res) {
 
+                    // 如果可以支持指定能够js接口，则执行
+                    ////////////////////////省略了判断
+
+                    wx.onMenuShareTimeline({
+                        title: '小满', // 分享标题
+                        link:resUrl+'/xiaoman.html', // 分享链接
+                        imgUrl: resUrl+'/images/xiaoman/xiaoman.png', // 分享图标
+                        success: function () {
+                            // 用户确认分享后执行的回调函数
+                        },
+                        cancel: function () {
+                            // 用户取消分享后执行的回调函数
+                        }
+                    });
+                }
+            }) ;
+        });
+    }) ;
+</script>
 
 </body>
 </html>

@@ -27,24 +27,28 @@
             touch-action: none;
             -ms-touch-action: none;
         }
+        #c2canvasdiv{
+            margin-top: 0!important;
+        }
         canvas {
             touch-action-delay: none;
             touch-action: none;
             -ms-touch-action: none;
+            margin-top: 0;
         }
     </style>
 </head>
 <body>
-    <!--头部显示的标题-->
+  <!--  &lt;!&ndash;头部显示的标题&ndash;&gt;
     <header class="common_header">
         小雪
-    </header>
+    </header>-->
     <!--放置展示节气信息的图片-->
     <nav class="common_nav">
         江边独钓寒江雪！
     </nav>
     <section class="common_content" id="container">
-        <div id="fb-root"></div>
+        <!--<div id="fb-root"></div>-->
 
         <script>
             // Issue a warning if trying to preview an exported project on disk.
@@ -65,11 +69,6 @@
     </section>
 
 <script src="js/jquery.js"></script>
-
-
-
-<!-- The runtime script.  You can rename it, but don't forget to rename the reference here as well.
-This file will have been minified and obfuscated if you enabled "Minify script" during export. -->
 <script src="js/c2runtime.js"></script>
 
 <script>
@@ -77,15 +76,11 @@ This file will have been minified and obfuscated if you enabled "Minify script" 
     jQuery(window).resize(function() {
         cr_sizeCanvas(jQuery(window).width(), jQuery(window).height());
     });
-
-    // Start the Construct 2 project running on window load.
     jQuery(document).ready(function ()
     {
-        // Create new runtime using the c2canvas
         cr_createRuntime("c2canvas");
     });
 
-    // Pause and resume on page becoming visible/invisible
     function onVisibilityChanged() {
         if (document.hidden || document.mozHidden || document.webkitHidden || document.msHidden)
             cr_setSuspended(true);
@@ -100,7 +95,6 @@ This file will have been minified and obfuscated if you enabled "Minify script" 
 
     if (navigator.serviceWorker && navigator.serviceWorker.register)
     {
-        // Register an empty service worker to trigger web app install banners.
         navigator.serviceWorker.register("sw.js", { scope: "./" });
     }
 </script>

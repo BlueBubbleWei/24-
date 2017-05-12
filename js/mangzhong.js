@@ -1,44 +1,71 @@
 /**
  * Created by weiyumei on 2017/5/11.
  */
-var num=Math.round((Math.random()*20))+10;
-var count=num;
-// 音乐
+var num=0;
+var amount;
+var count=0;
 var audio=document.getElementById("musicfx");
 $(document).ready(function () {
-    createMaizi();
-    var timer=setInterval(function () {//不断刷新
-        position();
-        num-=2;
-        console.log(num)
-        if(num<=0){
-            clearInterval(timer);
-          //失败事件
-            //失败
-            $("#number").html("您一共收了"+count+"斤麦子，继续努力哦！");
-            $('.hitTop').css("display", "block") ;
-        }else if(count<=0){
-            clearInterval(timer);
-            //成功事件
-            $('#changWeather').css("background-image","url(images/mangzhong/raining.gif)");
-            $('#changWeather').fadeOut(2000,function () {
-                $('#changWeather').fadeIn(1000,function () {
-                    $('#changWeather').css("background-image","url(images/mangzhong/nenya.gif)");
-                });
-
-            })
+    // 音乐
+    if (!is_weixn()){//判断是否在微信环境下
+        just_play();
+    }else{
+        if(musicSwitch){
+            just_play();//播放音乐
+            share();//微信分享
         }
-
-    },1000);
+    }
+    //翻页
+    $("#fanye").click(function () {
+        $(this).fadeOut(1000);
+        $(".first").fadeOut(1000);
+        //开始游戏
+        StartGame();
+    });
     //收麦子
-    $('.maizi').click(function () {
+    $('#changWeather').on('click','.maizi',function () {
         var index=$(this).attr("index");
         $(".maizi")[index].remove();
         for(var i=index;i< $(".maizi").length;i++){
             $('.maizi').eq(i).attr("index",parseInt( $('.maizi').eq(i).attr("index"))-1);
         }
-        count--;
+        amount--;
+        count++;
     });
+    //重新开始
+    $("#again").click(function () {
+        $("#hitTop").css("display","none");
+        //播放游戏开始音乐
+        startmusic();
+        //开始游戏
+        StartGame();
+    });
+
+    //开始游戏
+    function StartGame(){
+        num=Math.round((Math.random()*20))+10;
+        amount=num;
+        createMaizi();
+        var timer=setInterval(function () {//不断刷新
+            position();
+            num-=2;
+            if(num<=0){
+                clearInterval(timer);
+                //失败事件
+                endMusic();
+                $("#number").html("您一共收了"+count+"斤麦子，继续努力哦！");
+                $('.hitTop').css("display", "block") ;
+            }else if(amount<=0){
+                clearInterval(timer);
+                //成功事件
+                endMusic();
+                $("#number").html("您一共收了"+count+"斤麦子，好棒哦！");
+                $('.hitTop').css("display", "block") ;
+            }
+
+        },1000);
+    }
+
     //随机生成LeftTop
     function position() {
         for(var i=0;i<$('.maizi').length;i++){
@@ -60,14 +87,17 @@ $(document).ready(function () {
         }else if(obj.top>=Height*5/8){
             obj.top=Height*5/8-50;
         }
-        /*else if(obj.top>=Height*2/3){
-         obj.top=Height*2/3;
-         }else if(obj.top>=Height*7/8){
-         obj.top=Height*7/8-20;
-         }else{
-         obj.top=Height*1/3;
-         }*/
         return obj;
+    }
+    function shoumaizi() {
+        console.log(123)
+        var index=$(this).attr("index");
+        $(".maizi")[index].remove();
+        for(var i=index;i< $(".maizi").length;i++){
+            $('.maizi').eq(i).attr("index",parseInt( $('.maizi').eq(i).attr("index"))-1);
+        }
+        amount--;
+        count++;
     }
     //创建麦子
     function createMaizi() {
@@ -78,4 +108,5 @@ $(document).ready(function () {
         $('#changWeather').append(str);
         position();
     }
+
 });
