@@ -11,7 +11,7 @@ if (!is_weixn()){//判断是否在微信环境下
 // 游戏边界
 var border_x = document.documentElement.clientWidth ;
 // common里面common_content占比是0.8, game_pane占比0.86
-var border_y = document.documentElement.clientHeight * 0.8 * 0.86 ;
+var border_y = document.documentElement.clientHeight * 0.73 * 0.86 ;
 var speed = 1 ;
 // 额外加速度
 var more_speed = 0.3 ;
@@ -43,7 +43,6 @@ game_pane.width = border_x ;
 game_pane.height = border_y ;
 
 var context = game_pane.getContext('2d') ;
-
 $(document).ready(function () {
     //翻页
     $("#fanye").click(function () {
@@ -54,7 +53,7 @@ $(document).ready(function () {
     $(game_pane).on("touchstart", function (event) {
         var pageX = event.touches[0].pageX ;
         var pageY = event.touches[0].pageY ;
-        pageY = pageY - document.documentElement.clientHeight * 0.20 ;
+        pageY = pageY - document.documentElement.clientHeight * 0.13 ;
         var touchBug = getTouchedBug(pageX, pageY) ;
         if(touchBug){
             removeBug(touchBug) ;
@@ -84,11 +83,7 @@ function showFace() {
 }
 function play() {
     //播放游戏开始音乐
-    if(musicSwitch){
-        audio.currentTime = 0;
-        audio.src = "music/tap.mp3";
-        audio.play();
-    }
+    startmusic();
     showFace() ;
     startGame() ;
 }
@@ -160,13 +155,7 @@ function stopGame() {
 // 游戏失败提示
 function gameoverTip() {
     // 结束时更新音乐
-    if(musicSwitch){
-        audio.pause();
-        audio.currentTime = 0;
-        //切换音乐
-        audio.src = "music/err.mp3";
-        audio.play();//播放停止音乐
-    }
+   endMusic();
     //失败
     $("#number").html("您一共捉了"+count+"只虫子，继续努力哦！");
     $('.hitTop').css("display", "block") ;
